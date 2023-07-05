@@ -60,7 +60,6 @@ public class P9_PalindromeNumber{
 		 boolean palindrome = solution.isPalindrome(1221);
 		 System.out.println(palindrome);
 	 }
-	 
 //力扣代码
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
