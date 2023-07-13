@@ -43,6 +43,9 @@
 
 package leetcode.editor.cn;
 
+
+import java.nio.Buffer;
+
 /**
  * 两数相加
  * @author DY
@@ -51,24 +54,63 @@ package leetcode.editor.cn;
 public class P2_AddTwoNumbers{
 	 public static void main(String[] args) {
 	 	 //测试代码
-	 	 Solution solution = new P2_AddTwoNumbers().new Solution();
-	 }
-	 
+	 	/* Solution solution = new P2_AddTwoNumbers().new Solution();
+         ListNode listNode = new ListNode(2);
+         listNode.next = new ListNode(4);
+         listNode.next.next =  new ListNode(3);
+         ListNode listNode1 = new ListNode(5);
+         listNode1.next = new ListNode(6);
+         listNode1.next.next =  new ListNode(4);
+
+         ListNode listNode2 = solution.addTwoNumbers(listNode, listNode1);
+         while (listNode2!=null){
+             System.out.println(listNode2.val);
+             listNode2 = listNode2.next;
+         }*/
+     }
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
 //力扣代码
 //leetcode submit region begin(Prohibit modification and deletion)
 
  //Definition for singly-linked list.
- public class ListNode {
-     int val;
-     ListNode next;
-     ListNode() {}
-     ListNode(int val) { this.val = val; }
-     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- }
+
 
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		return new ListNode();
+        ListNode head1 = l1;
+        ListNode head2 = l2;
+        while(head1 != null){
+            if (head2 != null){
+                head1.val += head2.val;
+                head2 = head2.next;
+            }
+            if (head1.next == null && head2 != null){
+                head1.next = head2;
+                break;
+            }
+            head1 = head1.next;
+        }
+        merge(l1);
+        return l1;
+    }
+    public void merge(ListNode l1){
+        while (l1 != null){
+            if (l1.val >= 10){
+                l1.val = l1.val % 10;
+                if (l1.next == null){
+                    l1.next = new ListNode(0);
+                }
+                l1.next.val += 1;
+            }
+            l1 = l1.next;
+        }
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
